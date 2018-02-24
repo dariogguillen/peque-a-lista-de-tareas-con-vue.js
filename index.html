@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+</head>
+
+<body class="container">
+  <div id="app" class=" jumbotron">
+    <h2>{{ titulo }}</h2>
+    <div class="input-group">
+      <input class="form-control le" type="text" v-on:keyup.enter="agregarTarea" placeholder="Escribe una nueva Tarea" v-model="nuevaTarea">
+      <span class="input-group-btn right">
+        <button v-on:click="agregarTarea" class="btn btn-primary">
+          Agregar Tarea
+        </button>
+      </span>
+
+    </div>
+    <ul class=" list-group">
+      <li class="list-group-item" v-for="(tarea, indice) in tareas" v-bind:class="{terminada: tarea.terminada}">
+        {{tarea.texto}}
+        <span class=" pull-right">
+          <button type="button" class="btn btn-success btn-xs glyphicon glyphicon-ok " v-on:click="tarea.terminada = !tarea.terminada"></button>
+          <button type="button" class="btn btn-danger btn-xs glyphicon glyphicon-remove " v-on:click="borrar(indice)"></button>
+        </span>
+      </li>
+    </ul>
+  </div>
+  <script src="./main.js"></script>
+</body>
+
+</html>
